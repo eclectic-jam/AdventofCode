@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strings"
 )
 
 var symbols string = "!@#$%^&*"
@@ -30,9 +31,9 @@ func Execute(filePath string) {
 		length = len(line)
 		lines++
 
-		for _, r := range line {
-			schematic = append(schematic, string(r))
-		}
+		schematic = append(schematic, strings.Split(line, "")...)
 	}
+
+	fmt.Println(schematic)
 
 }
