@@ -21,7 +21,7 @@ var numbers = []string{
 	"nine",
 }
 
-func Execute(filePath string) {
+func Execute(filePath string, part int) {
 
 	file, err := os.Open(filePath)
 	if err != nil {
@@ -44,7 +44,7 @@ func Execute(filePath string) {
 					first = string(char)
 				}
 				last = string(char)
-			} else {
+			} else if part == 2 {
 				for j, num := range numbers {
 					if len(num) <= len(line)-i {
 						substr := line[i : i+len(num)]
@@ -64,7 +64,6 @@ func Execute(filePath string) {
 		if err != nil {
 			log.Fatal(err)
 		}
-		fmt.Printf("%s: %d\n", line, number)
 		total += number
 	}
 
@@ -72,5 +71,5 @@ func Execute(filePath string) {
 		log.Fatal(err)
 	}
 
-	fmt.Print(total)
+	fmt.Println(total)
 }
