@@ -74,22 +74,3 @@ func Execute(filePath string) {
 
 	fmt.Print(total)
 }
-
-func FindStringIndex(searchString string, target string) []int {
-	indices := []int{}
-	for i := range searchString {
-		j := 0
-		tempI := i
-		for searchString[tempI] == target[j] {
-			if j == len(target)-1 {
-				indices = append(indices, tempI-j)
-				break
-			} else {
-				tempI++
-				j++
-			}
-
-		}
-	}
-	return indices
-}
