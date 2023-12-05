@@ -1,10 +1,11 @@
 package main
 
 import (
-	"aoc/day3"
+	"aoc/day4"
 )
 
 func main() {
 	//day1.Execute("day1/data.txt", 1)
-	day3.Execute("day3/data.txt")
+	//day3.Execute("day3/data.txt")
+	day4.ExecutePart2("day4/data.txt")
 }
