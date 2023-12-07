@@ -31,18 +31,60 @@ func Execute(filePath string) {
 				seeds = getSeedNumbers(line)
 			} else {
 				//pass seeds as a slice so it can be updated
-				readMap(scanner, seeds[:])
+				seeds = readMap(scanner, seeds[:])
 			}
 		}
 
 	}
-	fmt.Println(seeds)
+	fmt.Println(minVal(seeds))
 }
 
-func readMap(input *bufio.Scanner, seeds []int) {
-	for i, seed := range seeds {
-		seeds[i] = seed + 1
+func readMap(scanner *bufio.Scanner, seeds []int) []int {
+	var newSeeds []int
+	scanner.Scan()
+	fmt.Println(seeds)
+
+	for len(scanner.Text()) != 0 {
+		line := scanner.Text()
+		nums := strings.Fields(line)
+
+		var sourceStart, destStart, length int
+
+		destStart = getInt(nums[0])
+		sourceStart = getInt(nums[1])
+		length = getInt(nums[2])
+
+		for j, val := range seeds {
+			if val >= sourceStart && val < sourceStart+length {
+				// add the new value
+				newSeeds = append(newSeeds, destStart)
+				// remove the value from the old array
+				seeds = append(seeds[:j], seeds[j+1:]...)
+			}
+		}
+		scanner.Scan()
 	}
+
+	return append(newSeeds, seeds...)
+
+}
+
+func minVal(arr []int) int {
+	minVal := 0
+	for _, num := range arr {
+		if num < minVal || minVal == 0 {
+			minVal = num
+		}
+	}
+	return minVal
+}
+
+func getInt(number string) int {
+	num, err := strconv.Atoi(number)
+	if err != nil {
+		log.Fatal("unable to convert string to int")
+	}
+	return num
 }
 
 func getSeedNumbers(input string) []int {
