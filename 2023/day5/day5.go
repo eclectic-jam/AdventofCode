@@ -40,9 +40,9 @@ func Execute(filePath string) {
 }
 
 func readMap(scanner *bufio.Scanner, seeds []int) []int {
-	var newSeeds []int
+	var found []int
+	found = append(found, seeds...)
 	scanner.Scan()
-	fmt.Println(seeds)
 
 	for len(scanner.Text()) != 0 {
 		line := scanner.Text()
@@ -54,18 +54,16 @@ func readMap(scanner *bufio.Scanner, seeds []int) []int {
 		sourceStart = getInt(nums[1])
 		length = getInt(nums[2])
 
-		for j, val := range seeds {
+		for i, val := range seeds {
 			if val >= sourceStart && val < sourceStart+length {
 				// add the new value
-				newSeeds = append(newSeeds, destStart)
-				// remove the value from the old array
-				seeds = append(seeds[:j], seeds[j+1:]...)
+				found[i] = destStart + val - sourceStart
 			}
 		}
 		scanner.Scan()
 	}
 
-	return append(newSeeds, seeds...)
+	return found
 
 }
 
