@@ -1,7 +1,7 @@
 package main
 
 import (
-	"aoc/day7"
+	"aoc/day8"
 )
 
 func main() {
@@ -10,5 +10,6 @@ func main() {
 	//day4.ExecutePart2("day4/data.txt")
 	//day5.Execute("day5/data.txt")
 	//day6.Execute("day6/data.txt")
-	day7.Execute("day7/data.txt")
+	//day7.Execute("day7/data.txt")
+	day8.Execute("day8/data.txt")
 }
