@@ -7,6 +7,15 @@ import (
 	"os"
 )
 
+type directions struct {
+	dx int
+	dy int
+}
+
+var dirs = []directions{
+	{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1},
+}
+
 func Execute(filePath string) {
 	fmt.Println("Day 10")
 
@@ -18,10 +27,30 @@ func Execute(filePath string) {
 
 	scanner := bufio.NewScanner(file)
 
+	lineNumber := 0
+	var pipes [][]string
+	var x, y int
+
 	for scanner.Scan() {
 		line := scanner.Text()
+		var newRow []string
+		for i, r := range line {
+			if string(r) == "S" {
+				x = lineNumber
+				x = i
+			}
+			newRow = append(newRow, string(r))
+		}
 
-		fmt.Println(line)
+		pipes = append(pipes, newRow)
+		lineNumber++
+	}
+
+	step := 0
+	for step == 0 || pipes[x][y] != "S" {
+		if step == 0 {
+
+		}
 	}
 
 }
